@@ -66,7 +66,7 @@ shift $((OPTIND-1))
 #===============================================================================
 
 openvpn \
---auth-nocache --route-nopull --script-security 2 \
+--auth-nocache --route-nopull --script-security 2 --redirect-gateway \
 --up /usr/local/bin/openvpn-up --down /usr/local/bin/openvpn-down \
 --config "${config}" \
 --auth-user-pass "${auth}"
