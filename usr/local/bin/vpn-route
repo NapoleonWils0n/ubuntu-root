@@ -67,6 +67,6 @@ shift $((OPTIND-1))
 
 openvpn \
 --auth-nocache --route-nopull --script-security 2 \
---up /usr/local/bin/openvpn-up-split --down /usr/local/bin/openvpn-down-split \
+--up /usr/local/bin/openvpn-up --down /usr/local/bin/openvpn-down \
 --config "${config}" \
 --auth-user-pass "${auth}"
