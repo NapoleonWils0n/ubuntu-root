@@ -1,0 +1,63 @@
+#!/bin/sh
+
+# openvpn split route with namespace
+#===================================
+
+# openvpn up script
+up() {
+    # create network namespace
+    ip netns add vpn || true
+
+    # bring up loop device
+    ip netns exec vpn ip link set dev lo up
+
+    # move VPN tunnel to netns
+    ip link set dev "$1" up netns vpn mtu "$2"
+
+    # configure tunnel in netns
+    ip netns exec vpn ip addr add dev "$1" \
+            "$4/${ifconfig_netmask:-30}" \
+            ${ifconfig_broadcast:+broadcast "$ifconfig_broadcast"}
+    if [ -n "$ifconfig_ipv6_local" ]; then
+            ip netns exec vpn ip addr add dev "$1" \
+                    "$ifconfig_ipv6_local"/112
+    fi
+
+    # set route in netns
+    ip netns exec vpn ip route add default via "$route_vpn_gateway"
+
+    # create vpn namespace directory
+    mkdir -p /etc/netns/vpn
+
+    # create resolv.conf with 
+    echo 'nameserver 127.0.0.1' > /etc/netns/vpn/resolv.conf 
+
+    # stop unbound dns server
+    systemctl stop unbound.service
+
+    # sleep for 1 second
+    sleep 1
+
+    # start unbound dns server in vpn namespace
+    systemctl start unbound-netns.service
+}
+
+# openvpn down script
+down() {
+    # remove namespace and delete resolv.conf
+    rm -rf /etc/netns/vpn
+    ip netns delete vpn
+
+    # restart unbound dns server
+    systemctl stop unbound-netns.service
+
+    # sleep for 1 second
+    sleep 1
+
+    # start unbound dns server
+    systemctl start unbound.service
+
+    true
+}
+
+"$script_type" "$@"
