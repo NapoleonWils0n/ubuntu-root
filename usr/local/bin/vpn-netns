@@ -70,4 +70,5 @@ openvpn \
 --ifconfig-noexec --route-noexec \
 --up /usr/local/bin/netns-vpn --down /usr/local/bin/netns-vpn \
 --config "${config}" \
+--mssfix 1431 \
 --auth-user-pass "${auth}"
