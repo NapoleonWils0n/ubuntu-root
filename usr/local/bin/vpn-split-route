@@ -36,7 +36,7 @@ select fileName in Quit $fileList; do
 	;;
 	$fileName )
 	openvpn --auth-nocache --route-nopull --script-security 2 \
-        --mssfix 1431 \
+        --mute-replay-warnings \
 	--up /usr/local/bin/openvpn-up-split --down /usr/local/bin/openvpn-down-split --config ${fileName} --auth-user-pass auth.txt
 	break
 	;;

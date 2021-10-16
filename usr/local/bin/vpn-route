@@ -69,5 +69,5 @@ openvpn \
 --auth-nocache --route-nopull --script-security 2 --redirect-gateway \
 --up /usr/local/bin/openvpn-up --down /usr/local/bin/openvpn-down \
 --config "${config}" \
---mssfix 1431 \
+--mute-replay-warnings \
 --auth-user-pass "${auth}"
