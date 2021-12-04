@@ -12,7 +12,7 @@ input=$(transmission-remote -l \
 | fzf --multi --info=inline --layout=reverse --header-lines=1 --delimiter='\n' --prompt='Select Torrents: ' | awk '{print $1}')
 
 
-# exit script if no elvi is selected (e.g hit ESC)
+# exit script if no torrents are selected (e.g hit ESC)
 if [ "${input}" = "" ]; then exit; fi
 
 
