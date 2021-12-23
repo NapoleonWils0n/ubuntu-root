@@ -1,4 +1,0 @@
-#!/bin/sh
-
-# open in namespace
-sudo ip netns exec vpn sudo -u $(whoami) -- "$@"
