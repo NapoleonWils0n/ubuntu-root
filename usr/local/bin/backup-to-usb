@@ -1,4 +1,0 @@
-#!/bin/sh
-
-# backup system to usb
-rsync -aAXvz --delete --progress /home/djwilcox /mnt/usb

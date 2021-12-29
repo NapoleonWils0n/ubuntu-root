@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# start transmission-daemon in vpn namespace
-#sudo ip netns exec vpn sudo -u $(whoami) transmission-daemon
-transmission-daemon
