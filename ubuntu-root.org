@@ -1,0 +1,75 @@
+#+TITLE: ubuntu root dotfiles
+#+STARTUP: content
+#+STARTUP: overview hideblocks
+#+OPTIONS: num:nil author:nil
+#+PROPERTY: header-args :mkdirp yes
+* tangle dotfiles
+** tangle document
+
+C-c C-v t
+
+** tangle only one code block
+
+C-u C-c C-v t
+
+** tangle from the command line
+
+tangle file from the command line
+where ~/git/ubuntu-dotfiles/ubuntu-dotfiles.org is the path of the file to tangle
+
+#+begin_src sh
+emacs --batch -l org --eval '(org-babel-tangle-file "~/git/ubuntu-dotfiles/ubuntu-dotfiles.org")'
+#+end_src
+* ubuntu root dotfiles
+** doas
+
+#+NAME: doas
+#+BEGIN_SRC sh
+# check config : doas -C /etc/doas.conf
+
+# allow user
+permit keepenv djwilcox
+
+# apt update and upgrade without a password
+permit nopass djwilcox cmd apt args update
+permit nopass djwilcox cmd apt args upgrade
+
+# mount and unmount drives 
+permit nopass djwilcox cmd mount 
+permit nopass djwilcox cmd umount 
+
+# zfs and zpool
+permit nopass djwilcox cmd zfs 
+permit nopass djwilcox cmd zpool 
+
+# allow root to switch to our user
+permit nopass setenv { PATH } root as djwilcox
+
+# namespace command
+permit nopass setenv { PATH } djwilcox cmd namespace
+
+# vpn
+permit nopass djwilcox cmd vpn-netns
+
+# root as root
+permit nopass keepenv setenv { PATH } root as root
+#+END_SRC
+
+*** doas tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ home dir
+
+#+NAME: doas-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/doas.conf"
+<<doas>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: doas-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "etc/doas.conf"
+<<doas>>
+#+END_SRC
