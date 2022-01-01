@@ -73,3 +73,18 @@ permit nopass keepenv setenv { PATH } root as root
 #+BEGIN_SRC conf :noweb yes :tangle "etc/doas.conf"
 <<doas>>
 #+END_SRC
+
+** /usr/local/bin
+*** namespace
+
+#+NAME: namespace
+#+PROPERTY: header-args:conf :tangle-mode (identity #o755)
+#+begin_src sh
+#!/bin/sh
+
+# open in namespace
+ip netns exec vpn doas -u djwilcox -- "$@"
+#+end_src
+
+
+
