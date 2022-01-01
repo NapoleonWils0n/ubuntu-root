@@ -311,6 +311,29 @@ sleep 1
 systemctl restart unbound.service
 #+end_src
 
+**** openvpn-up
+
+#+NAME: openvpn-up
+#+begin_src sh
+#!/bin/sh
+
+# openvpn-up
+#===========
+
+# echo tun0 ip address to unbound_outgoing_interface
+echo "outgoing-interface: $(ip a list tun0 \
+| grep inet | head -1 | awk '{print $2}' | cut -d'/' -f1)" > /etc/unbound/unbound_outgoing_interface
+
+# uncomment include
+sed -i '/include: "\/etc\/unbound\/unbound_outgoing_interface"/s/#//' /etc/unbound/unbound.conf.d/custom.conf
+
+# sleep for 1 second
+sleep 1
+
+# restart unbound dns server
+systemctl restart unbound.service
+#+end_src
+
 *** /usr/local/bin tangle
 **** blackrain tangle
 :PROPERTIES:
@@ -450,4 +473,24 @@ systemctl restart unbound.service
 #+NAME: openvpn-down-current-dir
 #+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/openvpn-down"
 <<openvpn-down>>
+#+END_SRC
+
+**** openvpn-up tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: openvpn-up-root-dir
+#+PROPERTY: :tangle-mode (identity #o755)
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/openvpn-up"
+<<openvpn-up>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: openvpn-up-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/openvpn-up"
+<<openvpn-up>>
 #+END_SRC
