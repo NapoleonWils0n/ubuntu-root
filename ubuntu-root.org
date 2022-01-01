@@ -1339,8 +1339,37 @@ cache_neg_max_ttl = 600
 + current dir
 
 #+NAME: dnscrypt-proxy-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "etc/etc/dnscrypt-proxy/dnscrypt-proxy.toml"
+#+BEGIN_SRC conf :noweb yes :tangle "etc/dnscrypt-proxy/dnscrypt-proxy.toml"
 <<dnscrypt-proxy>>
+#+END_SRC
+
+** resolv
+*** resolv config
+
+#+NAME: resolv
+#+BEGIN_SRC conf
+search localdomain
+nameserver 127.0.0.1
+options edns0
+#+END_SRC
+
+*** resolv tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: resolv-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/resolv.conf" :tangle-mode (identity #o644)
+<<resolv>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: resolv-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "etc/resolv.conf"
+<<resolv>>
 #+END_SRC
 
 ** xmonad xsession
