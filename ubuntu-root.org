@@ -75,10 +75,10 @@ permit nopass keepenv setenv { PATH } root as root
 #+END_SRC
 
 ** /usr/local/bin
-*** namespace
+*** /usr/local/bin config
+**** namespace
 
 #+NAME: namespace
-#+PROPERTY: header-args:conf :tangle-mode (identity #o755)
 #+begin_src sh
 #!/bin/sh
 
@@ -86,5 +86,25 @@ permit nopass keepenv setenv { PATH } root as root
 ip netns exec vpn doas -u djwilcox -- "$@"
 #+end_src
 
+*** /usr/local/bin tangle
+**** namespace tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ home dir
+
+#+NAME: namespace-root-dir
+#+PROPERTY: :tangle-mode (identity #o755)
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/namespace"
+<<namespace>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: namespace-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/namespace"
+<<namespace>>
+#+END_SRC
 
 
