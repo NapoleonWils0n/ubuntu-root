@@ -289,6 +289,28 @@ down() {
 "$script_type" "$@"
 #+end_src
 
+**** openvpn-down
+
+#+NAME: openvpn-down
+#+begin_src sh
+#!/bin/sh
+
+# openvpn-down
+#=============
+
+# clear unbound_outgoing_interface
+echo > /etc/unbound/unbound_outgoing_interface
+
+# comment out include
+sed -i '/include: "\/etc\/unbound\/unbound_outgoing_interface"/s/^/#/' /etc/unbound/unbound.conf.d/custom.conf
+
+# sleep for 1 second
+sleep 1
+
+# restart unbound dns server
+systemctl restart unbound.service
+#+end_src
+
 *** /usr/local/bin tangle
 **** blackrain tangle
 :PROPERTIES:
@@ -390,7 +412,6 @@ down() {
 <<namespace>>
 #+END_SRC
 
-
 **** netns-vpn tangle
 :PROPERTIES:
 :ORDERED:  t
@@ -409,4 +430,24 @@ down() {
 #+NAME: netns-vpn-current-dir
 #+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/netns-vpn"
 <<netns-vpn>>
+#+END_SRC
+
+**** openvpn-down tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: openvpn-down-root-dir
+#+PROPERTY: :tangle-mode (identity #o755)
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/openvpn-down"
+<<openvpn-down>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: openvpn-down-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/openvpn-down"
+<<openvpn-down>>
 #+END_SRC
