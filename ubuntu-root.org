@@ -199,6 +199,17 @@ BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/firefox_firefox.deskt
 /snap/firefox/current/usr/lib/firefox/firefox"
 #+end_src
 
+**** magnet-add
+
+#+NAME: magnet-add
+#+begin_src sh
+#!/bin/sh
+
+# transmission add magnet link from browser
+
+transmission-remote --add "$@"
+#+end_src
+
 **** namespace
 
 #+NAME: namespace
@@ -268,6 +279,26 @@ ip netns exec vpn doas -u djwilcox -- "$@"
 #+NAME: firefox-netns-current-dir
 #+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/firefox-netns"
 <<firefox-netns>>
+#+END_SRC
+
+**** magnet-add tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: magnet-add-root-dir
+#+PROPERTY: :tangle-mode (identity #o755)
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/magnet-add"
+<<magnet-add>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: magnet-add-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/magnet-add"
+<<magnet-add>>
 #+END_SRC
 
 **** namespace tangle
