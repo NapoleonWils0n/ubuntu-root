@@ -22,6 +22,7 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/ubuntu-dotfiles/ubunt
 #+end_src
 * ubuntu root dotfiles
 ** doas
+*** doas config
 
 #+NAME: doas
 #+BEGIN_SRC sh
@@ -502,8 +503,7 @@ openvpn \
 + root dir
 
 #+NAME: blackrain-root-dir
-#+PROPERTY: :tangle-mode (identity #o755)
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/blackrain"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/blackrain" :tangle-mode (identity #o755)
 <<blackrain>>
 #+END_SRC
   
@@ -522,8 +522,7 @@ openvpn \
 + root dir
 
 #+NAME: chromium-netns-root-dir
-#+PROPERTY: :tangle-mode (identity #o755)
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/chromium-netns"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/chromium-netns" :tangle-mode (identity #o755)
 <<chromium-netns>>
 #+END_SRC
   
@@ -542,8 +541,7 @@ openvpn \
 + root dir
 
 #+NAME: firefox-netns-root-dir
-#+PROPERTY: :tangle-mode (identity #o755)
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/firefox-netns"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/firefox-netns" :tangle-mode (identity #o755)
 <<firefox-netns>>
 #+END_SRC
   
@@ -562,8 +560,7 @@ openvpn \
 + root dir
 
 #+NAME: magnet-add-root-dir
-#+PROPERTY: :tangle-mode (identity #o755)
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/magnet-add"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/magnet-add" :tangle-mode (identity #o755)
 <<magnet-add>>
 #+END_SRC
   
@@ -582,8 +579,7 @@ openvpn \
 + root dir
 
 #+NAME: namespace-root-dir
-#+PROPERTY: :tangle-mode (identity #o755)
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/namespace"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/namespace" :tangle-mode (identity #o755)
 <<namespace>>
 #+END_SRC
   
@@ -602,13 +598,12 @@ openvpn \
 + root dir
 
 #+NAME: netns-vpn-root-dir
-#+PROPERTY: :tangle-mode (identity #o755)
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/netns-vpn"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/netns-vpn" :tangle-mode (identity #o755)
 <<netns-vpn>>
 #+END_SRC
   
 + current dir
-
+  
 #+NAME: netns-vpn-current-dir
 #+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/netns-vpn"
 <<netns-vpn>>
@@ -622,8 +617,7 @@ openvpn \
 + root dir
 
 #+NAME: openvpn-down-root-dir
-#+PROPERTY: :tangle-mode (identity #o755)
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/openvpn-down"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/openvpn-down" :tangle-mode (identity #o755)
 <<openvpn-down>>
 #+END_SRC
   
@@ -642,8 +636,7 @@ openvpn \
 + root dir
 
 #+NAME: openvpn-up-root-dir
-#+PROPERTY: :tangle-mode (identity #o755)
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/openvpn-up"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/openvpn-up" :tangle-mode (identity #o755)
 <<openvpn-up>>
 #+END_SRC
   
@@ -662,8 +655,7 @@ openvpn \
 + root dir
 
 #+NAME: vpn-netns-root-dir
-#+PROPERTY: :tangle-mode (identity #o755)
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/vpn-netns"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/vpn-netns" :tangle-mode (identity #o755)
 <<vpn-netns>>
 #+END_SRC
   
@@ -682,8 +674,7 @@ openvpn \
 + root dir
 
 #+NAME: vpn-route-root-dir
-#+PROPERTY: :tangle-mode (identity #o755)
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/vpn-route"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/vpn-route" :tangle-mode (identity #o755)
 <<vpn-route>>
 #+END_SRC
   
@@ -692,4 +683,35 @@ openvpn \
 #+NAME: vpn-route-current-dir
 #+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/vpn-route"
 <<vpn-route>>
+#+END_SRC
+
+** xmonad xsession
+*** xmonad xsession config
+
+#+NAME: xmonad-xsession
+#+BEGIN_SRC conf
+[Desktop Entry]
+Name=XMonad
+Comment=Lightweight tiling window manager
+Exec=/home/djwilcox/.cache/xmonad/xmonad-x86_64-linux
+Type=XSession
+#+END_SRC
+
+*** xmonad xession tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: xmonad-xsession-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/share/xsessions/xmonad.desktop" :tangle-mode (identity #o644)
+<<xmonad-xsession>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: xmonad-xsession-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "usr/share/xsessions/xmonad.desktop"
+<<xmonad-xsession>>
 #+END_SRC
