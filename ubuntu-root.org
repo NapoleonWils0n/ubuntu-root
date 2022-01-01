@@ -1372,6 +1372,44 @@ options edns0
 <<resolv>>
 #+END_SRC
 
+** xorg
+*** xorg config
+
+#+NAME: xorg
+#+BEGIN_SRC conf
+Section "Monitor"
+    Identifier "LVDS0"
+    Option "DPMS" "false"
+EndSection
+
+Section "ServerLayout"
+    Identifier "ServerLayout0"
+    Option "StandbyTime" "0"
+    Option "SuspendTime" "0"
+    Option "OffTime"     "0"
+    Option "BlankTime"   "0"
+EndSection
+#+END_SRC
+
+*** xorg tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: xorg-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/X11/xorg.conf.d/10-monitor.conf" :tangle-mode (identity #o644)
+<<xorg>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: xorg-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "etc/X11/xorg.conf.d/10-monitor.conf"
+<<xorg>>
+#+END_SRC
+
 ** xmonad xsession
 *** xmonad xsession config
 
