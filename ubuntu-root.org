@@ -186,6 +186,19 @@ BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/chromium_chromium.des
 /snap/chromium/current/usr/lib/chromium-browser/chrome"
 #+end_src
 
+**** firefox-netns
+
+#+NAME: firefox-netns
+#+begin_src sh
+#!/bin/sh
+
+# firefox namespace
+
+sh -c "HOME=${HOME} PULSE_SERVER=/run/user/$(id -u "${USER}")/pulse/native PULSE_COOKIE=/home/${USER}/.config/pulse/cookie \
+BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/firefox_firefox.desktop \
+/snap/firefox/current/usr/lib/firefox/firefox"
+#+end_src
+
 **** namespace
 
 #+NAME: namespace
@@ -235,6 +248,26 @@ ip netns exec vpn doas -u djwilcox -- "$@"
 #+NAME: chromium-netns-current-dir
 #+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/chromium-netns"
 <<chromium-netns>>
+#+END_SRC
+
+**** firefox-netns tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: firefox-netns-root-dir
+#+PROPERTY: :tangle-mode (identity #o755)
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/firefox-netns"
+<<firefox-netns>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: firefox-netns-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/firefox-netns"
+<<firefox-netns>>
 #+END_SRC
 
 **** namespace tangle
