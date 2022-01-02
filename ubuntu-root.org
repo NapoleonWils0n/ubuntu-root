@@ -1689,6 +1689,14 @@ DeferAcceptSec=1
 WantedBy=sockets.target
 #+end_src
 
+**** transmission.service.d config
+
+#+NAME: transmission.service.d
+#+begin_src conf
+[Service]
+User=djwilcox
+#+end_src
+
 *** systemd tangle
 **** logind.conf tangle
 :PROPERTIES:
@@ -1745,4 +1753,23 @@ WantedBy=sockets.target
 #+NAME: dnscrypt-proxy.socket-current-dir
 #+BEGIN_SRC conf :noweb yes :tangle "etc/systemd/system/dnscrypt-proxy.socket"
 <<dnscrypt-proxy.socket>>
+#+END_SRC
+
+**** transmission.service.d tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: transmission.service.d-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/systemd/system/transmission.service.d/username.conf" :tangle-mode (identity #o644)
+<<transmission.service.d>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: transmission.service.d-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "etc/systemd/system/transmission.service.d/username.conf"
+<<transmission.service.d>>
 #+END_SRC
