@@ -1637,6 +1637,58 @@ HandleLidSwitchDocked=hibernate
 
 #+end_src
 
+**** dnscrypt-proxy.service config
+
+#+NAME: dnscrypt-proxy.service
+#+begin_src conf
+[Unit]
+Description=DNSCrypt-proxy client
+Documentation=https://github.com/jedisct1/dnscrypt-proxy/wiki
+Requires=dnscrypt-proxy.socket
+After=network.target
+Before=nss-lookup.target
+Wants=nss-lookup.target
+
+[Service]
+NonBlocking=true
+ExecStart=/usr/sbin/dnscrypt-proxy --config /etc/dnscrypt-proxy/dnscrypt-proxy.toml
+ProtectHome=yes
+ProtectControlGroups=yes
+ProtectKernelModules=yes
+
+# Run dnscrypt-proxy as unprivileged user with
+# temporary assigned UID/GID. See man:systemd.exec
+# for more info. Requires systemd 232+.
+DynamicUser=yes
+CacheDirectory=dnscrypt-proxy
+LogsDirectory=dnscrypt-proxy
+RuntimeDirectory=dnscrypt-proxy
+
+[Install]
+Also=dnscrypt-proxy.socket
+WantedBy=multi-user.target
+#+end_src
+
+**** dnscrypt-proxy.socket config
+
+#+NAME: dnscrypt-proxy.socket
+#+begin_src conf
+[Unit]
+Description=DNSCrypt-proxy socket
+Documentation=https://github.com/jedisct1/dnscrypt-proxy/wiki
+Before=nss-lookup.target
+Wants=nss-lookup.target
+
+[Socket]
+ListenStream=127.0.0.1:5353
+ListenDatagram=127.0.0.1:5353
+NoDelay=true
+DeferAcceptSec=1
+
+[Install]
+WantedBy=sockets.target
+#+end_src
+
 *** systemd tangle
 **** logind.conf tangle
 :PROPERTIES:
@@ -1655,4 +1707,42 @@ HandleLidSwitchDocked=hibernate
 #+NAME: logind-current-dir
 #+BEGIN_SRC conf :noweb yes :tangle "etc/systemd/logind.conf"
 <<logind>>
+#+END_SRC
+
+**** dnscrypt-proxy.service tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: dnscrypt-proxy.service-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/systemd/system/dnscrypt-proxy.service" :tangle-mode (identity #o644)
+<<dnscrypt-proxy.service>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: dnscrypt-proxy.service-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "etc/systemd/system/dnscrypt-proxy.service"
+<<dnscrypt-proxy.service>>
+#+END_SRC
+
+**** dnscrypt-proxy.socket tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: dnscrypt-proxy.socket-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/systemd/system/dnscrypt-proxy.socket" :tangle-mode (identity #o644)
+<<dnscrypt-proxy.socket>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: dnscrypt-proxy.socket-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "etc/systemd/system/dnscrypt-proxy.socket"
+<<dnscrypt-proxy.socket>>
 #+END_SRC
