@@ -904,7 +904,42 @@ __yt_dlp
 
 ** unbound
 *** unbound config
+**** unbound.conf
+
+#+NAME: unbound.conf
+#+BEGIN_SRC conf
+# Unbound configuration file for Debian.
+#
+# See the unbound.conf(5) man page.
+#
+# See /usr/share/doc/unbound/examples/unbound.conf for a commented
+# reference config file.
+#
+# The following line includes additional configuration files from the
+# /etc/unbound/unbound.conf.d directory.
+include: "/etc/unbound/unbound.conf.d/*.conf"
+#+END_SRC
+
 *** unbound tangle
+**** unbound.conf tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: unbound.conf-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/unbound/unbound.conf" :tangle-mode (identity #o644)
+<<unbound.conf>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: unbound.conf-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "etc/unbound/unbound.conf"
+<<unbound.conf>>
+#+END_SRC
+
 ** resolv
 *** resolv config
 
