@@ -5858,6 +5858,12 @@ local-zone: "zmedia.com" redirect
 local-data: "zmedia.com A 127.0.0.1"
 #+END_SRC
 
+**** unbound_outgoing_interface config
+
+#+NAME: unbound_outgoing_interface
+#+BEGIN_SRC conf
+#+END_SRC
+
 *** unbound tangle
 **** unbound.conf tangle
 :PROPERTIES:
@@ -5914,6 +5920,25 @@ local-data: "zmedia.com A 127.0.0.1"
 #+NAME: unbound_ad_servers-current-dir
 #+BEGIN_SRC conf :noweb yes :tangle "etc/unbound/unbound_ad_servers"
 <<unbound_ad_servers>>
+#+END_SRC
+
+**** unbound_outgoing_interface tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: unbound_outgoing_interface-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/unbound/unbound_outgoing_interface" :tangle-mode (identity #o644)
+<<unbound_outgoing_interface>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: unbound_outgoing_interface-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "etc/unbound/unbound_outgoing_interface"
+<<unbound_outgoing_interface>>
 #+END_SRC
 
 ** resolv
