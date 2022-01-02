@@ -1697,6 +1697,31 @@ WantedBy=sockets.target
 User=djwilcox
 #+end_src
 
+**** unbound-netns.service config
+
+#+NAME: unbound-netns.service
+#+begin_src conf
+[Unit]
+Description=Unbound DNS server
+Documentation=man:unbound(8)
+After=network.target
+Before=nss-lookup.target
+Wants=nss-lookup.target
+
+[Service]
+Type=notify
+Restart=on-failure
+EnvironmentFile=-/etc/default/unbound
+ExecStartPre=-/usr/lib/unbound/package-helper chroot_setup
+ExecStartPre=-/usr/lib/unbound/package-helper root_trust_anchor_update
+ExecStart=/usr/bin/ip netns exec vpn /usr/sbin/unbound -d $DAEMON_OPTS
+ExecReload=/usr/bin/ip netns exec vpn /usr/sbin/unbound-control reload
+PIDFile=/run/unbound-netns.pid
+
+[Install]
+WantedBy=multi-user.target
+#+end_src
+
 *** systemd tangle
 **** logind.conf tangle
 :PROPERTIES:
@@ -1772,4 +1797,23 @@ User=djwilcox
 #+NAME: transmission.service.d-current-dir
 #+BEGIN_SRC conf :noweb yes :tangle "etc/systemd/system/transmission.service.d/username.conf"
 <<transmission.service.d>>
+#+END_SRC
+
+**** unbound-netns.service tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: unbound-netns.service-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/systemd/system/unbound-netns.service" :tangle-mode (identity #o644)
+<<unbound-netns.service>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: unbound-netns.service-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "etc/systemd/system/unbound-netns.service"
+<<unbound-netns.service>>
 #+END_SRC
