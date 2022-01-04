@@ -503,14 +503,14 @@ openvpn \
 + root dir
 
 #+NAME: blackrain-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/blackrain" :tangle-mode (identity #o755)
+#+BEGIN_SRC sh :noweb yes :tangle "/doas::/usr/local/bin/blackrain" :tangle-mode (identity #o755)
 <<blackrain>>
 #+END_SRC
   
 + current dir
 
 #+NAME: blackrain-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/blackrain"
+#+BEGIN_SRC sh :noweb yes :tangle "usr/local/bin/blackrain"
 <<blackrain>>
 #+END_SRC
 
@@ -522,14 +522,14 @@ openvpn \
 + root dir
 
 #+NAME: chromium-netns-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/chromium-netns" :tangle-mode (identity #o755)
+#+BEGIN_SRC sh :noweb yes :tangle "/doas::/usr/local/bin/chromium-netns" :tangle-mode (identity #o755)
 <<chromium-netns>>
 #+END_SRC
   
 + current dir
 
 #+NAME: chromium-netns-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/chromium-netns"
+#+BEGIN_SRC sh :noweb yes :tangle "usr/local/bin/chromium-netns"
 <<chromium-netns>>
 #+END_SRC
 
@@ -541,14 +541,14 @@ openvpn \
 + root dir
 
 #+NAME: firefox-netns-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/firefox-netns" :tangle-mode (identity #o755)
+#+BEGIN_SRC sh :noweb yes :tangle "/doas::/usr/local/bin/firefox-netns" :tangle-mode (identity #o755)
 <<firefox-netns>>
 #+END_SRC
   
 + current dir
 
 #+NAME: firefox-netns-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/firefox-netns"
+#+BEGIN_SRC sh :noweb yes :tangle "usr/local/bin/firefox-netns"
 <<firefox-netns>>
 #+END_SRC
 
@@ -560,14 +560,14 @@ openvpn \
 + root dir
 
 #+NAME: magnet-add-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/magnet-add" :tangle-mode (identity #o755)
+#+BEGIN_SRC sh :noweb yes :tangle "/doas::/usr/local/bin/magnet-add" :tangle-mode (identity #o755)
 <<magnet-add>>
 #+END_SRC
   
 + current dir
 
 #+NAME: magnet-add-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/magnet-add"
+#+BEGIN_SRC sh :noweb yes :tangle "usr/local/bin/magnet-add"
 <<magnet-add>>
 #+END_SRC
 
@@ -579,14 +579,14 @@ openvpn \
 + root dir
 
 #+NAME: namespace-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/namespace" :tangle-mode (identity #o755)
+#+BEGIN_SRC sh :noweb yes :tangle "/doas::/usr/local/bin/namespace" :tangle-mode (identity #o755)
 <<namespace>>
 #+END_SRC
   
 + current dir
 
 #+NAME: namespace-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/namespace"
+#+BEGIN_SRC sh :noweb yes :tangle "usr/local/bin/namespace"
 <<namespace>>
 #+END_SRC
 
@@ -598,14 +598,14 @@ openvpn \
 + root dir
 
 #+NAME: netns-vpn-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/netns-vpn" :tangle-mode (identity #o755)
+#+BEGIN_SRC sh :noweb yes :tangle "/doas::/usr/local/bin/netns-vpn" :tangle-mode (identity #o755)
 <<netns-vpn>>
 #+END_SRC
   
 + current dir
   
 #+NAME: netns-vpn-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/netns-vpn"
+#+BEGIN_SRC sh :noweb yes :tangle "usr/local/bin/netns-vpn"
 <<netns-vpn>>
 #+END_SRC
 
@@ -617,14 +617,14 @@ openvpn \
 + root dir
 
 #+NAME: openvpn-down-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/openvpn-down" :tangle-mode (identity #o755)
+#+BEGIN_SRC sh :noweb yes :tangle "/doas::/usr/local/bin/openvpn-down" :tangle-mode (identity #o755)
 <<openvpn-down>>
 #+END_SRC
   
 + current dir
 
 #+NAME: openvpn-down-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/openvpn-down"
+#+BEGIN_SRC sh :noweb yes :tangle "usr/local/bin/openvpn-down"
 <<openvpn-down>>
 #+END_SRC
 
@@ -636,14 +636,14 @@ openvpn \
 + root dir
 
 #+NAME: openvpn-up-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/openvpn-up" :tangle-mode (identity #o755)
+#+BEGIN_SRC sh :noweb yes :tangle "/doas::/usr/local/bin/openvpn-up" :tangle-mode (identity #o755)
 <<openvpn-up>>
 #+END_SRC
   
 + current dir
 
 #+NAME: openvpn-up-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/openvpn-up"
+#+BEGIN_SRC sh :noweb yes :tangle "usr/local/bin/openvpn-up"
 <<openvpn-up>>
 #+END_SRC
 
@@ -655,14 +655,14 @@ openvpn \
 + root dir
 
 #+NAME: vpn-netns-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/vpn-netns" :tangle-mode (identity #o755)
+#+BEGIN_SRC sh :noweb yes :tangle "/doas::/usr/local/bin/vpn-netns" :tangle-mode (identity #o755)
 <<vpn-netns>>
 #+END_SRC
   
 + current dir
 
 #+NAME: vpn-netns-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/vpn-netns"
+#+BEGIN_SRC sh :noweb yes :tangle "usr/local/bin/vpn-netns"
 <<vpn-netns>>
 #+END_SRC
 
@@ -674,14 +674,14 @@ openvpn \
 + root dir
 
 #+NAME: vpn-route-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/bin/vpn-route" :tangle-mode (identity #o755)
+#+BEGIN_SRC sh :noweb yes :tangle "/doas::/usr/local/bin/vpn-route" :tangle-mode (identity #o755)
 <<vpn-route>>
 #+END_SRC
   
 + current dir
 
 #+NAME: vpn-route-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/bin/vpn-route"
+#+BEGIN_SRC sh :noweb yes :tangle "usr/local/bin/vpn-route"
 <<vpn-route>>
 #+END_SRC
 
