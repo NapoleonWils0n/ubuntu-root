@@ -2,4 +2,8 @@
 
 # transmission add magnet link from browser
 
-transmission-remote --add "$@"
+# if script is run without arguments exit
+[ $# -gt 0 ] || exit
+
+# transmission add magnet link
+[ -d /etc/netns/vpn ] && doas namespace transmission-remote --add "$@" || transmission-remote --add "$@"
