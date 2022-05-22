@@ -184,7 +184,7 @@ esac
 
 sh -c "HOME=${HOME} PULSE_SERVER=/run/user/$(id -u "${USER}")/pulse/native PULSE_COOKIE=/home/${USER}/.config/pulse/cookie \
 BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/chromium_chromium.desktop \
-/snap/chromium/current/usr/lib/chromium-browser/chrome"
+/snap/chromium/current/usr/lib/chromium-browser/chrome --force-dark-mode --enable-features=WebUIDarkMode"
 #+end_src
 
 **** firefox-netns
