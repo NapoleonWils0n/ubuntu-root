@@ -706,6 +706,10 @@ Section "ServerLayout"
     Option "OffTime"     "0"
     Option "BlankTime"   "0"
 EndSection
+
+Section "Extensions"
+    Option "DPMS" "Disable"
+EndSection
 #+END_SRC
 
 *** xorg tangle
