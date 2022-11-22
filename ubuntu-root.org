@@ -301,6 +301,18 @@ down() {
 "$script_type" "$@"
 #+end_src
 
+**** nognome_notifications
+
+#+NAME: nognome_notifications
+#+begin_src sh
+#!/bin/sh
+
+# kill gnome notifications
+
+pkill -f 'org.gnome.Shell.Notifications'
+
+#+end_src
+
 **** openvpn-down
 
 #+NAME: openvpn-down
@@ -618,6 +630,25 @@ openvpn \
 #+NAME: netns-vpn-current-dir
 #+BEGIN_SRC sh :noweb yes :tangle "usr/local/bin/netns-vpn"
 <<netns-vpn>>
+#+END_SRC
+
+**** nognome_notifications tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: nognome_notifications-root-dir
+#+BEGIN_SRC sh :noweb yes :tangle "/doas::/usr/local/bin/nognome_notifications" :tangle-mode (identity #o755)
+<<nognome_notifications>>
+#+END_SRC
+  
++ current dir
+  
+#+NAME: nognome_notifications-current-dir
+#+BEGIN_SRC sh :noweb yes :tangle "usr/local/bin/nognome_notifications"
+<<nognome_notifications>>
 #+END_SRC
 
 **** openvpn-down tangle
